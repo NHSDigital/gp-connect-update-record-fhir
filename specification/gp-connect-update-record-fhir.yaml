@@ -6,27 +6,108 @@ info:
   version: 'Computed and injected at build time by `scripts/set_version.py`'
   description: |
     ## Overview
-    Add a fully fledged description here with markdown syntax.
-    For help completing the content of your API spec, see our guidance on the minimum standard (bronze) details 
-    to include [here](https://nhsd-confluence.digital.nhs.uk/display/APM/Writing+a+bronze+API+cover+page). You should also base your content on our exemplar API - [PDS FHIR](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir).
+    Use this API to write-back structured information to a patient's registered GP practice record. Structured information is patient data in a coded format that a consuming system can import and process.
+    This API harnsesses the existing FHIR profiles found in the [GP Connect Data Model - FHIR STU3 representation](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/Profiles?version=current) documentation, which is used by the GP Connect Access Record Structured capability.
+    
+    This specification is essentially the GP Connect API but for data ingress rather than egress.
+
+    Throught this API, providers and consumers will be referenced.
+    
+    - A provider is the **sending system** within an organisation
+    - A consumer is the **receiving system** within an organisation
+
+    ---
+
     ## Who can use this API
-    To be completed.
+    - Providers who understand FHIR STU3 (and eventually R4)
+    - Providers with a use-case for structured healthcare data to flow to primary care systems
+    
+    ### Prerequisites
+    
+    #### Technical
+    The technical prerequisites are as follows:
+    - you must have access to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network)
+    - you must be [Personal Demographics Service (PDS)](https://digital.nhs.uk/Demographics)-compliant or capable of performing a PDS search via NHS Digital or a third-party provider
+    - you must be familiar with the HL7 FHIR standard
+   
+    #### Information Governance (IG)
+    The IG prerequisites are as follows:
+    - your organisation must be compliant with the [GP Connect Direct Care API Information Governance Model](https://github.com/nhsconnect/gpc-consumer-support/wiki/Information-Governance-(IG))
+    - you must manage access to your system locally using local role-based access control (RBAC) (this does not need to be compliant with the national RBAC model and GP Connect products do not require smartcards to control access, though they can be used if already implemented)
+    - the GP Connect APIs are for direct care purposes for NHS patients in England
+   
+    ### Clinical safety
+    The clinical safety prerequisites are as follows:
+    - you must have a clinical safety officer (CSO) who is responsible for [DCB0129](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0129-clinical-risk-management-its-application-in-the-manufacture-of-health-it-systems) and, if necessary, [DCB0160](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0160-clinical-risk-management-its-application-in-the-deployment-and-use-of-health-it-systems) (for more on clinical risk management, visit [Clinical risk management standards](https://digital.nhs.uk/services/clinical-safety/clinical-risk-management-standards))
+    If you are confident that you can meet the prerequisites, please express an interest with the GP Connect team (see 'Onboarding' below).
+      
+    #### Who this API is not for
+    - where structured healthcare data does not need to flow primary care systems - for example, a PDF or image
+    - while this API supports attachments, an integration with the [National Record Locator (NRL)](https://digital.nhs.uk/services/national-record-locator) is preferred
+
+    ---
+
     ## Related APIs
-    To be completed.
+
+    The following APIs are also related to this API:
+    - [GP Connect Access Record: Structured](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir) - Use this API to access structured information from a patient’s registered GP practice record
+    - [GP Connect Access Document - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir) - use this API to retrieve unstructured documents from a patient's GP practice record
+    - Personal Demographics Service - FHIR API  - use this API to search for patients, retrieve patients by NHS number and update patients
+    - Personal Demographics Service - HL7 V3 API  - use this if you want to use functions that are not yet available on the FHIR API
+    - Spine Directory Service - FHIR API  - access accredited system information and messaging endpoint details
+
+    ---
+
     ## API status and roadmap
-    To be completed.
+    
+    Alpha
+
+    ---
+
     ## Service level
-    To be completed.
+    
+    To be determined
+    
+    ---
+
     ## Technology
-    To be completed.
+    
+    This is a REST-like API which harnesses appropriate REST verbs where possible; however, it is only concerned with writing back to the record with `POST`, `PUT`, and `DELETE` verbs.
+
+    The body of the request must contain a FHIR payload - where possible this will be a single resource, rather than a FHIR `Bundle`.
+    At this moment in time, FHIR STU3 (`CareConnect-GPC`) is supported; however, longer term will also support FHIR R4 `UK Core` or `NHS England`.
+  
+
+    ---
+
     ## Network access
-    To be completed.
+    
+    You can access this API via the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+
+    The API is not currently available over the internet, but we plan to enable public internet access in the future.
+
+    For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
+
+
     ## Security and authorisation
-    To be completed.
+    Access to the GP Connect APIs is controlled and protected by the [Spine Secure Proxy (SSP)](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#spine-security-proxy-ssp-), a forward HTTP proxy.
+    It provides a single security point for both authentication and authorisation for consuming systems. Additional responsibilities include auditing of requests, checking data sharing agreements and transaction logging.
+    All HTTP communications are secured using TLS MA. This includes both legs of the request, from consumer system to the proxy and then from the proxy to provider system.
+
+
+    ---
+
     ## Environments and testing
-    To be completed.
+    To be determined - will we be having a testing environment?
+
+    ---
+
     ## Onboarding
-    To be completed.
+    To be determined.
+
+    ---
+
+
   contact:
     name: 'gp-connect-update-record-fhir API Support'
     url: 'https://digital.nhs.uk/developer/help-and-support'
