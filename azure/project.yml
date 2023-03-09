@@ -1,0 +1,8 @@
+variables:
+  - group: status-endpoint
+  - name: service_name
+    value: gp-connect-update-record-fhir
+  - name: short_service_name
+    value: gcurf
+  - name: service_base_path
+    value: gp-connect-update-record-fhir
