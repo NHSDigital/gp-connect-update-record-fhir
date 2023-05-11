@@ -1,41 +1,104 @@
 # This is an OpenAPI Specification (https://swagger.io/specification/)
-# for gp-connect-update-record-fhir owned by NHS Digital (https://digital.nhs.uk/)
+# for gp-connect-appointments-management-fhir owned by NHS Digital (https://digital.nhs.uk/)
 openapi: '3.0.0'
 info:
   title: 'gp-connect-update-record-fhir'
-  version: 'Computed and injected at build time by `scripts/set_version.py`'
+  version: 'draft'
   description: |
-    ## Overview
-    Add a fully fledged description here with markdown syntax.
-    For help completing the content of your API spec, see our guidance on the minimum standard (bronze) details 
-    to include [here](https://nhsd-confluence.digital.nhs.uk/display/APM/Writing+a+bronze+API+cover+page). You should also base your content on our exemplar API - [PDS FHIR](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir).
-    ## Who can use this API
-    To be completed.
-    ## Related APIs
-    To be completed.
-    ## API status and roadmap
-    To be completed.
-    ## Service level
-    To be completed.
-    ## Technology
-    To be completed.
-    ## Network access
-    To be completed.
-    ## Security and authorisation
-    To be completed.
-    ## Environments and testing
-    To be completed.
-    ## Onboarding
-    To be completed.
-  contact:
-    name: 'gp-connect-update-record-fhir API Support'
-    url: 'https://digital.nhs.uk/developer/help-and-support'
-    email: api.management@nhs.net
-servers:
-  - url: 'https://sandbox.api.service.nhs.uk/gp-connect-update-record-fhir'
-    description: Sandbox environment.
-  - url: 'https://int.api.service.nhs.uk/gp-connect-update-record-fhir'
-    description: Integration test environment.
-  - url: 'https://api.service.nhs.uk/gp-connect-update-record-fhir'
-    description: Production environment.
-paths: {}
+    # Overview
+    Use this API to send structured data to a patients GP record. You can send data related to the patient for the following areas
+    - medications
+    - encounters
+    - observations
+
+    Common use cases include
+
+    - a pharmacy informing the GP that a patient has been prescribed antibiotics
+
+    For more details, see the Update Record specification
+
+    
+    # Who can use this API
+    This API can be used by developers of clinical systems who have the need to update a patients GP record.
+   
+    Make sure you have a valid use case before you go too far with your development. To do this, contact us.
+    You must do this before you can go live (see 'Onboarding' below).
+    ## Prerequisites
+    ### Technical 
+    
+    You must:
+    
+    - have access to the [Health and Social Care Network (HCSN)](https://digital.nhs.uk/services/health-and-social-care-network)
+     - be [Personal Demographics Service(PDS)](https://digital.nhs.uk/services/demographics) compliant or capable of performing a PDS search
+    ### Information governance (IG)
+     You must:
+     - be compliant with the GP Connect Direct Care API Information Governance Model.
+     - be using the GP Connect APIs for direct care purposes for NHS patients in England
+     
+     ### Clinical safety
+    You must:
+    - have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160. For more on clinical risk management, visit Clinical risk management standards.
+    If you are confident that you can meet the prerequisites, contact us to express your interest. See 'Onboarding' below.
+    # Related APIs
+      The following APIs are related to this API:
+      - [GP Connect Access Record: Structured - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir) - retrieve structured information from a patient's GP practice record.
+      - [GP Connect Send Document - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir) - send a PDF consultation summary to a registered GP practice.
+
+    # API status and roadmap
+    This API is in [development](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses).
+    # Service level
+    This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+    For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
+    # Technology
+    This is a FHIR API which conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with the GP Connect Data Model which is a FHIR STU3 representation.  The API requires the provider to send a HTTP request containing a FHIR payload to the provider endpoint. The payload will contain clinical information about the patient - for example, medications,  encounters and observations.
+    For more details, see [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#fhir).
+    # Network access
+    You can access this API via the [Health and Social Care Network (HSCN)].(https://digital.nhs.uk/services/health-and-social-care-network)
+    The API is not currently available over the internet, but we plan to enable public internet access in the future.
+    For more details, see [Network access for APIs.](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis)
+    # Security and authorisation
+    ## Security
+    Access to the GP Connect APIs is controlled and protected by the Spine Secure Proxy (SSP), a forward HTTP proxy.
+
+    It provides a single security point for both authentication and authorisation for consuming systems. Additional responsibilities include auditing of requests, checking data sharing agreements and transaction logging.
+
+    All HTTP communications are secured using TLS MA. This includes both legs of the request, from consumer system to the proxy and then from the proxy to provider system.
+
+    ## Authorisation
+    Authorisation takes place in two locations: 
+    
+    - the consumer system
+    - the SSP
+    
+    The consumer system must have local RBAC in place and restrict GP Connect APIs to authorised users. With each request, a JSON Web Token (JWT) must be included with the following information:
+    details of users, including role
+    where smartcards are used in the consumer system, including SDS user and role IDs
+    details of the consumer system
+    details of the consumer’s organisation, including ODS code
+    The information in the JWT is retained for audit purposes.
+
+    The SSP checks data-sharing agreements to ensure that the consumer system is authorised to communicate with the provider system.
+
+    # Environments and testing
+
+    # Onboarding
+    
+    This API is currently not available for onboarding
+    
+    ## Expressing an interest
+
+    If you meet the prerequisites and have a product that can integrate with GP Connect, you should express an interest with us by submitting a use case. The main purpose of the use case is to help us understand how you plan to use GP Connect APIs and the business issue you are looking to address. You should email your use case to us at gpconnect@nhs.net. Your use case should include the following information as a minimum:
+    - the business problem you are intending to solve using GP Connect
+    - how GP Connect will be used in practice to benefit patients and staff
+    - which of the GP Connect products you will use to benefit patients and staff
+    - any end user organisations you are currently working with
+    - who your clinical safety officer is and, where available, your clinical risk management process documentation
+    
+
+    # Hazard log
+    The API Update Record: Structured generic hazard log shows you the clinical risks of using API functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.
+   
+
+    
+      
+      
