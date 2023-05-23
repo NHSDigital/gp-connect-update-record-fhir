@@ -1,5 +1,5 @@
 # This is an OpenAPI Specification (https://swagger.io/specification/)
-# for gp-connect-appointments-management-fhir owned by NHS Digital (https://digital.nhs.uk/)
+# for gp-connect-update-record-fhir owned by NHS Digital (https://digital.nhs.uk/)
 openapi: '3.0.0'
 info:
   title: 'gp-connect-update-record-fhir'
@@ -94,9 +94,13 @@ info:
     - any end user organisations you are currently working with
     - who your clinical safety officer is and, where available, your clinical risk management process documentation
     
+    ## Consumer assurance process
+    
+    Once we approve your use case, we support you through the assurance process to go live. We will discuss the assurance process and artefacts with you to hel you understand our requirements
+    
+    Start your development work within 6 months of use case approval. If you miss this date, a review or new submission of the use case will be required. Changes or additional development will also require a review or new use case submission. 
+    
 
-    # Hazard log
-    The API Update Record: Structured generic hazard log shows you the clinical risks of using API functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.
    
 
     
