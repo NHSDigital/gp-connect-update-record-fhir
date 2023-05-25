@@ -16,9 +16,7 @@ info:
     - a pharmacy informing the GP that a patient has been prescribed antibiotics
     - a pharmacy informing a GP that a patient has had their blood pressure checked
     
-    For more details, see the [Update Record specification](https://simplifier.net/guide/gp-connect-update-record?version=current)
 
-    
     # Who can use this API
     This API can be used by developers of clinical systems who have the need to update a patients GP record.
    
@@ -30,7 +28,8 @@ info:
     You must:
     
     - have access to the [Health and Social Care Network (HCSN)](https://digital.nhs.uk/services/health-and-social-care-network)
-     - be [Personal Demographics Service(PDS)](https://digital.nhs.uk/services/demographics) compliant or capable of performing a PDS search
+     - be [Personal Demographics Service(PDS)](https://digital.nhs.uk/services/demographics) compliant or capable of performing a PDS search to obtain the patients registered GP
+     - be [Spine Directory Service (SDS)](https://developer.nhs.uk/apis/gpconnect-0-5-0/integration_spine_directory_service.html) compliant to be able to obtain the endpoint of the registered GP
     ### Information governance (IG)
      You must:
      - be compliant with the GP Connect Direct Care API Information Governance Model.
@@ -51,10 +50,15 @@ info:
     This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
     For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
     # Technology
-    This is a FHIR API which conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with the GP Connect Data Model which is a FHIR STU3 representation.  The API requires the provider to send a HTTP request containing a FHIR payload to the provider endpoint. The payload will contain clinical information about the patient - for example, medications,  encounters and observations.
-    For more details, see [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#fhir).
+    This is a FHIR API which conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with the GP Connect Data Model which is a FHIR STU3 representation.  
+    
+    The API requires the provider to send a HTTP request containing a FHIR payload to the provider endpoint. 
+    
+    The payload will contain clinical information about the patient - for example, medications,  encounters and observations.
+    For more details, see [Update Record implementation guide](https://simplifier.net/guide/gp-connect-update-record?version=current) to assist with your development
     # Network access
     You can access this API via the [Health and Social Care Network](https://digital.nhs.uk/services/health-and-social-care-network).
+    
     The API is not currently available over the internet, but we plan to enable public internet access in the future.
     For more details, see [Network access for APIs.](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis)
     # Security and authorisation
@@ -72,10 +76,11 @@ info:
     - the SSP
     
     The consumer system must have local RBAC in place and restrict GP Connect APIs to authorised users. With each request, a JSON Web Token (JWT) must be included with the following information:
-    details of users, including role
-    where smartcards are used in the consumer system, including SDS user and role IDs
-    details of the consumer system
-    details of the consumer’s organisation, including ODS code
+    -  details of users, including role
+    -  where smartcards are used in the consumer system, including SDS user and role IDs
+    - details of the consumer system
+    - details of the consumer’s organisation, including ODS code
+    
     The information in the JWT is retained for audit purposes.
 
     The SSP checks data-sharing agreements to ensure that the consumer system is authorised to communicate with the provider system.
@@ -88,7 +93,11 @@ info:
     
     ## Expressing an interest
 
-    If you meet the prerequisites and have a product that can integrate with GP Connect, you should express an interest with us by submitting a use case. The main purpose of the use case is to help us understand how you plan to use GP Connect APIs and the business issue you are looking to address. You should email your use case to us at gpconnect@nhs.net. Your use case should include the following information as a minimum:
+    If you meet the prerequisites and have a product that can integrate with GP Connect, you should express an interest with us by submitting a use case. 
+    
+    The main purpose of the use case is to help us understand how you plan to use GP Connect APIs and the business issue you are looking to address. 
+    
+    You should email your use case to us at gpconnect@nhs.net. Your use case should include the following information as a minimum:
     - the business problem you are intending to solve using GP Connect
     - how GP Connect will be used in practice to benefit patients and staff
     - which of the GP Connect products you will use to benefit patients and staff
@@ -113,7 +122,7 @@ info:
     
     # Endpoints
     
-    ## Bundle
+    ## Updating a patients GP record
     
 paths:
   /FHIR/STU3/Bundle:
@@ -121,9 +130,7 @@ paths:
       operationId: post-update
       summary: Post an Update to the patients record
       description: >
-        ## Overview
-
-        Generic description of endpoint
+ 
 
       parameters:
         - in: header
@@ -172,7 +179,11 @@ paths:
             schema:
               type: object
               description: >
-                  FILL THIS OUT
+                  A bundle is posted to the endpoint consisting of four resources:
+                   - Patient
+                   - Encounter
+                   - Medication Statement
+                   - Observation
                   
             example:
               resourceType: Bundle
@@ -601,7 +612,7 @@ paths:
             application/fhir+json:
               schema:
                 type: object
-                description: Link to UKCore-OperationOutcome resource population guidance [here](https://simplifier.net/guide/GP-Connect-Patient-Facing-Prescription-Management/Home/FHIR-Assets/All-Assets/Profiles/UKCore-OperationOutcome?version=current).
+                description: Link 
               examples:
                 example:
                   value:
