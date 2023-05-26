@@ -179,11 +179,11 @@ paths:
             schema:
               type: object
               description: >
-                  A bundle is posted to the endpoint consisting of four resources:
-                   - Patient
-                   - Encounter
-                   - Medication Statement
-                   - Observation
+                  A [bundle](https://hl7.org/fhir/stu3/bundle.html) is posted to the endpoint consisting of four resources:
+                   - [Patient](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-Patient-1?version=current)
+                   - [Encounter](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-Encounter-1?version=current)
+                   - [Medication Statement](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-MedicationStatement-1?version=current)
+                   - [Observation](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-Observation-1?version=current)
                   
             example:
               resourceType: Bundle
@@ -603,11 +603,11 @@ paths:
 
             | HTTP Status | Spine error code   | Description
             |-------------|--------------------|------------
-            | 400         | CONFLICTING_VALUES | BasedOn reference to previous prescription does not match previous
-            | 400         | INVALID_RESOURCE   | BasedOn reference to previous prescription not present
-            | 400         | INVALID_PARAMETER  | Invalid date
-            | 400         | INVALID_NHS_NUMBER | The NHS Number is invalid
-            | 404         | PATIENT_NOT_FOUND  | The request is for the record of a non-Regular/GMS patient (i.e. the patient's registered practice is somewhere else)
+            | 400         | INVALID_RESOURCE   | 
+              400         | MISSING_FIELD      |
+              400         | MISSING_RESOURCE   |
+            | 400         | INVALID_NHS_NUMBER |
+            | 422         | UNPROCESSABLE      | 
           content:
             application/fhir+json:
               schema:
