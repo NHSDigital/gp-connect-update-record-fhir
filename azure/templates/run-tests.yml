@@ -25,7 +25,7 @@ steps:
         export APIGEE_APP_ID="MY APP ID"
         export STATUS_ENDPOINT_API_KEY="$(STATUS_ENDPOINT_API_KEY)"
         export SOURCE_COMMIT_ID="$(Build.SourceVersion)"
-        make $(parameters.test_command)
+        make test
       workingDirectory: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)
       displayName: Run full test suite
     - task: PublishTestResults@2
