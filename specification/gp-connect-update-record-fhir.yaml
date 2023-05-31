@@ -15,7 +15,6 @@ info:
 
     - a pharmacy informing the GP that a patient has been prescribed antibiotics
     - a pharmacy informing a GP that a patient has had their blood pressure checked
-    
 
     # Who can use this API
     This API can be used by developers of clinical systems who have the need to update a patients GP record.
