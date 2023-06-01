@@ -2,7 +2,7 @@
 # for gp-connect-update-record-fhir owned by NHS Digital (https://digital.nhs.uk/)
 openapi: '3.0.0'
 info:
-  title: 'gp-connect-update-record-fhir'
+  title: '[DRAFT]gp-connect-update-record-fhir'
   version: 'draft'
   description: |
     # Overview
@@ -15,6 +15,7 @@ info:
 
     - a pharmacy informing the GP that a patient has been prescribed antibiotics
     - a pharmacy informing a GP that a patient has had their blood pressure checked
+    
 
     # Who can use this API
     This API can be used by developers of clinical systems who have the need to update a patients GP record.
@@ -85,6 +86,8 @@ info:
     The SSP checks data-sharing agreements to ensure that the consumer system is authorised to communicate with the provider system.
 
     # Environments and testing
+    
+    TBD
 
     # Onboarding
     
@@ -119,9 +122,7 @@ info:
 
     - 500 to 599 if it failed because of an error on our server
     
-    # Endpoints
-    
-    ## Updating a patients GP record
+    The provider must return a [GPConnect-OperationOutcome-1](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--GPConnect-OperationOutcome-1?version=current) resource in the event of an error. This is to provide additional detail to the user on the cause of the error.
     
 paths:
   /FHIR/STU3/Bundle:
@@ -394,7 +395,7 @@ paths:
                   FILL THIS OUT
               examples:
                 example:
-                  description: Successful response to view medication.
+                  description: Succesful bundle post
                   value:
                     resourceType: Bundle
                     id: e461896x-b0cx-4x7d-9344-b276c9aec312
