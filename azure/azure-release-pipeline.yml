@@ -67,5 +67,5 @@ extends:
           - template: ./templates/run-tests.yml
             parameters:
               full: true
-              test_command: prod
-              smoketest_command: prod
+              # test_command: make test-prod
+              # smoketest_command: make smoketest-prod
