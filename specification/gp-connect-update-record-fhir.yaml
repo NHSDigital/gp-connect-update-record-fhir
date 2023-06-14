@@ -745,7 +745,7 @@ paths:
                           details:
                             coding:
                               - system: https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1
-                                code: 	ACCESS DENIED
+                                code: ACCESS DENIED
                                 display: GP Connect is not enabled at the practice          
         
    
