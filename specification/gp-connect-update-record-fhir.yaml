@@ -745,8 +745,8 @@ paths:
                           details:
                             coding:
                               - system: https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1
-                                code: INVALID_NHS_NUMBER
-                                display: Invalid NHS Number           
+                                code: ACCESS DENIED
+                                display: GP Connect is not enabled at the practice          
         
    
                   
