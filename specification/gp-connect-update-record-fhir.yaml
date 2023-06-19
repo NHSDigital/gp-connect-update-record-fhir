@@ -122,7 +122,7 @@ info:
 
     - 500 to 599 if it failed because of an error on our server
     
-    The provider must return a [GPConnect-OperationOutcome-1](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--GPConnect-OperationOutcome-1?version=current) resource in the event of an error. This is to provide additional detail to the user on the cause of the error.
+    The provider must return a [GP Connect-OperationOutcome-1](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--GPConnect-OperationOutcome-1?version=current) resource in the event of an error. This is to provide additional detail to the user on the cause of the error.
     
 paths:
   /FHIR/STU3/Bundle:
