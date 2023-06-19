@@ -6,7 +6,7 @@ info:
   version: 'draft'
   description: |
     # Overview
-    Use this API to send structured data to a patients GP record. You can send data related to the patient for the following areas
+    Use this API to send structured data to a patient's GP record. You can send data related to the patient for the following areas:
     - medications
     - encounters
     - observations
@@ -18,9 +18,9 @@ info:
     
 
     # Who can use this API
-    This API can be used by developers of clinical systems who have the need to update a patients GP record.
+    This API can be used by developers of clinical systems who have the need to update a patient's GP record.
    
-    Make sure you have a valid use case before you go too far with your development. To do this, contact us.
+    Make sure you have a valid use case before you go too far with your development.
     You must do this before you can go live (see 'Onboarding' below).
     ## Prerequisites
     ### Technical 
@@ -28,16 +28,16 @@ info:
     You must:
     
     - have access to the [Health and Social Care Network (HCSN)](https://digital.nhs.uk/services/health-and-social-care-network)
-     - be [Personal Demographics Service(PDS)](https://digital.nhs.uk/services/demographics) compliant or capable of performing a PDS search to obtain the patients registered GP
+     - be [Personal Demographics Service (PDS)](https://digital.nhs.uk/services/demographics) compliant or capable of performing a PDS search to obtain the patient's registered GP
      - be [Spine Directory Service (SDS)](https://developer.nhs.uk/apis/gpconnect-0-5-0/integration_spine_directory_service.html) compliant to be able to obtain the endpoint of the registered GP
-    ### Information governance (IG)
+    ### Information governance
      You must:
-     - be compliant with the GP Connect Direct Care API Information Governance Model.
+     - be compliant with the GP Connect Direct Care API Information Governance Model
      - be using the GP Connect APIs for direct care purposes for NHS patients in England
      
      ### Clinical safety
     You must:
-    - have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160. For more on clinical risk management, visit Clinical risk management standards.
+    - have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160. For more details on clinical risk management, see Clinical risk management standards.
     If you are confident that you can meet the prerequisites, contact us to express your interest. See 'Onboarding' below.
     # Related APIs
       The following APIs are related to this API:
@@ -55,7 +55,7 @@ info:
     The API requires the provider to send a HTTP request containing a FHIR payload to the provider endpoint. 
     
     The payload will contain clinical information about the patient - for example, medications,  encounters and observations.
-    For more details, see [Update Record implementation guide](https://simplifier.net/guide/gp-connect-update-record?version=current) to assist with your development
+    For more details, see [Update Record implementation guide](https://simplifier.net/guide/gp-connect-update-record?version=current) to assist with your development.
     # Network access
     You can access this API via the [Health and Social Care Network](https://digital.nhs.uk/services/health-and-social-care-network).
     
@@ -91,7 +91,7 @@ info:
 
     # Onboarding
     
-    This API is currently not available for onboarding
+    This API is currently not available for onboarding.
     
     ## Expressing an interest
 
@@ -128,7 +128,7 @@ paths:
   /FHIR/STU3/Bundle:
     post:
       operationId: post-update
-      summary: Post an Update to the patients record
+      summary: Post an update to the patients record
       description: >
  
 
@@ -632,7 +632,7 @@ paths:
   /meta:
     get:
       operationId: get-capabilitystatement
-      summary: Get Update Record FHIR capability statement
+      summary: Get update record FHIR capability statement
       description: >
  
 
