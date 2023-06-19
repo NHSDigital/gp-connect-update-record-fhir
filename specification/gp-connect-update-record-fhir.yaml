@@ -50,7 +50,7 @@ info:
     This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
     For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
     # Technology
-    This is a FHIR API which conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with the GP Connect Data Model which is a FHIR STU3 representation.  
+    This is a FHIR API which conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#fhir) global standard for health care data exchange. Specifically, it is aligned with the GP Connect Data Model which is a FHIR STU3 representation.  
     
     The API requires the provider to send a HTTP request containing a FHIR payload to the provider endpoint. 
     
