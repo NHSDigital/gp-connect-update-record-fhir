@@ -67,7 +67,7 @@ info:
 
     It provides a single security point for both authentication and authorisation for consuming systems. Additional responsibilities include auditing of requests, checking data sharing agreements and transaction logging.
 
-    All HTTP communications are secured using TLS MA. This includes both legs of the request, from consumer system to the proxy and then from the proxy to provider system.
+    All HTTP communications are secured using [TLS-MA](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis). This includes both legs of the request, from consumer system to the proxy and then from the proxy to provider system.
 
     ## Authorisation
     Authorisation takes place in two locations: 
@@ -75,7 +75,7 @@ info:
     - the consumer system
     - the SSP
     
-    The consumer system must have local RBAC in place and restrict GP Connect APIs to authorised users. With each request, a JSON Web Token (JWT) must be included with the following information:
+    The consumer system must have local [RBAC](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/national-rbac-for-developers) in place and restrict GP Connect APIs to authorised users. With each request, a JSON Web Token (JWT) must be included with the following information:
     -  details of users, including role
     -  where smartcards are used in the consumer system, including SDS user and role IDs
     - details of the consumer system
@@ -122,7 +122,7 @@ info:
 
     - 500 to 599 if it failed because of an error on our server
     
-    The provider must return a [GPConnect-OperationOutcome-1](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--GPConnect-OperationOutcome-1?version=current) resource in the event of an error. This is to provide additional detail to the user on the cause of the error.
+    Errors are returned as a [GPConnect-OperationOutcome-1](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--GPConnect-OperationOutcome-1?version=current) resource in the event of an error. This provides additional detail to the user on the cause of the error.
     
 paths:
   /FHIR/STU3/Bundle:
